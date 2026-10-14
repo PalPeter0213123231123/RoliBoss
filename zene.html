@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080600">
+
+    <title>Yung Göri & Zalán | A BOSS zenéje</title>
+
+    <link rel="stylesheet" href="roland.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="boss-page music-page">
+
+    <div class="gold-dust"></div>
+
+    <header class="boss-header">
+        <a class="boss-logo" href="index.html">♛ ROLAND ♛</a>
+
+        <nav>
+            <a href="roland.html">FŐOLDAL</a>
+            <a href="bemutatkozas.html">A BOSS</a>
+            <a href="#zene">A ZENÉNK</a>
+        </nav>
+    </header>
+
+    <main class="boss-main" id="zene">
+
+        <p class="boss-eyebrow">♛ KÉT TESÓ • EGY HANGZÁS ♛</p>
+
+        <h1 class="boss-title">A BOSS</h1>
+
+        <div class="boss-gold-line"></div>
+
+        <h2 class="boss-name">YUNG GÖRI &amp; ZALÁN</h2>
+
+        <p class="boss-nickname">A LEGKOMOLYABB ZENE, TESÓK! 🔥</p>
+
+        <div class="track-cover">
+            <div class="track-cover-glow"></div>
+            <div class="track-crown">♛</div>
+
+            <img src="zeneindex.png" alt="Yung Göri és Zalán zenéjének borítóképe" class="track-cover-image">
+
+            <div class="track-cover-label">
+                <span>YUNG GÖRI</span>
+                <span class="track-cover-x">×</span>
+                <span>ZALÁN</span>
+            </div>
+        </div>
+
+        <section class="track-panel">
+
+            <p class="track-label">♬ SAJÁT ZENE ♬</p>
+
+            <h2>TESÓK, EZ ODACSAP! 👑</h2>
+
+            <p class="track-description">
+                Na csáó, tesók! Ezt a zenét Roland és Zalán hozta össze.
+                Két tesó, egy közös hangzás, full arany életérzés.
+                Nyomjátok meg a gombot, és induljon a műsor! 🔥
+            </p>
+
+            <audio id="bossTrack" preload="metadata">
+                <source src="HaZeZaCsI-Reggelig ft YUNG GÖRI.mp3" type="audio/mpeg">
+                A böngésződ nem támogatja a hanglejátszást.
+            </audio>
+
+            <button id="trackButton" class="track-button" type="button">
+                <span id="trackIcon">▶</span>
+                <span id="trackButtonText">INDULJON A ZENE!</span>
+            </button>
+
+            <div class="track-progress-area">
+                <div class="track-times">
+                    <span id="trackCurrent">0:00</span>
+                    <span id="trackDuration">0:00</span>
+                </div>
+
+                <input id="trackSeek" class="track-seek" type="range" min="0" max="100" value="0" step="0.1"
+                    aria-label="Zene pozíciója">
+            </div>
+
+            <p id="trackStatus" class="track-status">
+                A BOSS és Zalán zenéje készen áll. 👑
+            </p>
+
+        </section>
+
+        <section class="track-lyrics">
+            <p class="boss-eyebrow">♛ A MIKROFON A MIÉNK ♛</p>
+            <h2>A ZENE SZÖVEGE</h2>
+            <div class="boss-gold-line"></div>
+
+            <p id="lyricsPlaceholder">
+                Zalán
+                Szex zene, vagy nem tudom mi a fasz, ????
+
+                Jol megbaszom ezt a gádzsit hogyha át jön.
+                Gecimet a hátára fogom LŐ NI.
+                Faszom eszi reggelire azt mondja finom
+                Kurva nagy a csöcse egész nap azt markolom
+                YEAH
+                Finom ez a punci egész nap azt majszolom
+                YEAH
+                Nem húzok a faszomra kotont
+                JAH JAH
+                Tiszta cirkusz ami itt van, hol van a porond?
+                Jah
+                Körülöttünk minden lángol bennünk meg a pont.
+
+                Roland
+                YUNG GÖRI ON THE BEAT
+                Átjön a ribanc ma szétbasszuk a házat
+                Kurva nagy a segge előttem csak rázza
+                Azt mondja hogy faszfej vagyok mégis engem választ
+                Reggelig a szobámból a szomszéd ordibálhat(?)
+                Faszom kivan megint csörög a telóóóó
+                Tegnap még leszartak, ma mindenki TESÓÓÓÓ
+                Kurva nagy a füst, már nem látom a plafont
+                Sok mindent túléltem mégis itt tartok TESÓÓÓ
+
+
+
+                Átjön a ribanc ma szétbasszuk a házat
+                Kurva nagy a segge előttem csak rázza
+                Azt mondja hogy faszfej vagyok mégis engem választ
+                Reggelig a szobámból a ..................
+
+            </p>
+
+            <div id="lyricsContent"></div>
+        </section>
+
+        <a href="index.html" class="boss-back">♛ VISSZA A FŐOLDALRA ♛</a>
+
+    </main>
+
+    <footer class="boss-footer">
+        <p>♛ YUNG GÖRI &amp; ZALÁN © 2026 ♛</p>
+        <p>KÉT TESÓ • EGY ZENE • ARANY STÍLUS</p>
+    </footer>
+
+    <script>
+        const track = document.getElementById("bossTrack");
+        const trackButton = document.getElementById("trackButton");
+        const trackIcon = document.getElementById("trackIcon");
+        const trackButtonText = document.getElementById("trackButtonText");
+        const trackStatus = document.getElementById("trackStatus");
+        const trackCurrent = document.getElementById("trackCurrent");
+        const trackDuration = document.getElementById("trackDuration");
+        const trackSeek = document.getElementById("trackSeek");
+
+        function formatTime(seconds) {
+            if (!Number.isFinite(seconds)) return "0:00";
+
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+
+            return minutes + ":" + String(remainingSeconds).padStart(2, "0");
+        }
+
+        trackButton.addEventListener("click", async () => {
+            if (track.paused) {
+                try {
+                    await track.play();
+                    trackIcon.textContent = "Ⅱ";
+                    trackButtonText.textContent = "ZENE LEÁLLÍTÁSA";
+                    trackButton.classList.add("track-playing");
+                    trackStatus.textContent = "♫ Szól a BOSS és Zalán zenéje!";
+                } catch (error) {
+                    trackStatus.textContent = "Nem indul a zene! Ellenőrizd az MP3-fájl nevét és helyét.";
+                }
+            } else {
+                track.pause();
+            }
+        });
+
+        function resetTrackButton() {
+            trackIcon.textContent = "▶";
+            trackButtonText.textContent = "INDULJON A ZENE!";
+            trackButton.classList.remove("track-playing");
+        }
+
+        track.addEventListener("play", () => {
+            trackIcon.textContent = "Ⅱ";
+            trackButtonText.textContent = "ZENE LEÁLLÍTÁSA";
+            trackButton.classList.add("track-playing");
+        });
+
+        track.addEventListener("pause", resetTrackButton);
+        track.addEventListener("ended", () => {
+            resetTrackButton();
+            trackSeek.value = 0;
+            trackStatus.textContent = "Vége a számnak, tesók! 👑";
+        });
+
+        track.addEventListener("loadedmetadata", () => {
+            trackDuration.textContent = formatTime(track.duration);
+        });
+
+        track.addEventListener("timeupdate", () => {
+            trackCurrent.textContent = formatTime(track.currentTime);
+
+            if (Number.isFinite(track.duration) && track.duration > 0) {
+                trackSeek.value = (track.currentTime / track.duration) * 100;
+            }
+        });
+
+        trackSeek.addEventListener("input", () => {
+            if (Number.isFinite(track.duration) && track.duration > 0) {
+                track.currentTime = (Number(trackSeek.value) / 100) * track.duration;
+            }
+        });
+
+        track.addEventListener("error", () => {
+            trackStatus.textContent = "Nem találom a zenét! Tedd az MP3-at a zene.html mellé, és ellenőrizd a fájlnevet.";
+            resetTrackButton();
+        });
+    </script>
+
+</body>
+
+</html>
